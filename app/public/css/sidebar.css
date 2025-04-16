@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.left-sidebar {
+  width: 16.6667%;
+}
+
+.right-sidebar {
+  width: 33.3333%;
+  right: 0;
+}
+
+.main-content {
+  margin-left: 16.6667%;
+  margin-right: 33.3333%;
+  width: 100%;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.main-content {
+  scrollbar-width: none;
+}

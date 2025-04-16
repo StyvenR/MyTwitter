@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="css/sidebar.css"> -->
+</head>
+
+<body id="mainBackground"class="bg-blue-50">
+  <div class="flex w-full">
+    <!-- Sidebar -->
+    <div id="leftSidebar" class="bg-blue-50 dark:bg-black p-4 sticky top-0 h-screen w-1/6 ml-0 2xl:ml-60 xl:w-1/10 xl:ml-10 ">
+      <img src="../assets/logo_lidl.png" alt="LIDL" class="w-16 h-16 mb-4">
+      <ul>
+        <li class="mb-4"><a href="timeline.html" class="flex text-blue-600 hover:text-blue-800 text-lg "><i
+          class="fas fa-home mr-2 text-xl"></i> <span class="hidden xl:block">Home</span></a></li>
+        <li class="mb-4"><a href="search.html" class="flex text-blue-600 hover:text-blue-800 text-lg "><i
+          class="fas fa-search mr-2 text-xl"></i><span class="hidden xl:block">Research</span></a></li>
+        <li class="mb-4"><a href="#" class="flex text-blue-600 hover:text-blue-800 text-lg "><i
+          class="fas fa-envelope mr-2 text-xl"></i><span class="hidden xl:block">Messages</span></a></li>
+        <li class="mb-4"><a href="#" class="flex text-blue-600 hover:text-blue-800 text-lg "><i
+          class="fas fa-bookmark mr-2 text-xl"></i><span class="hidden xl:block">Bookmarks</span></a></li>
+        <li class="mb-4"><a href="profile.html" class="flex text-blue-600 hover:text-blue-800 text-lg "><i
+          class="fas fa-user mr-2 text-xl"></i><span class="hidden xl:block">Profile</span></a></li>
+        <li class="mb-4"><a href="#" class="flex text-blue-600 hover:text-blue-800 text-lg "><i
+          class="fas fa-moon mr-2 text-xl"></i><span class="hidden xl:block">Dark Mode</span></a></li>
+      </ul>
+      <div class="popup hidden absolute bottom-28 right-0 p-4 border border-gray-200 w-full">
+        <button id="logOutAff"
+          class="text-lg hover:bg-blue-200 py-2 px-4 text-left rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+          onclick="logoutUser()"></button>
+      </div>
+      <div id="user-info"
+        class="flex justify-start mt-4 absolute bottom-0 left-0 p-4 m-0 rounded-full hover:bg-blue-100 lg:mb-4 ml-4 ">
+        <img src="../assets/default_avatar.png" alt="Avatar" class="w-12 h-12 rounded-full mr-4">
+        <div>
+          <h3 class="displayNameAff text-lg font-semibold hidden xl:block"></h3>
+          <p class="userNameAff text-gray-500 hidden xl:block"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="tl_main" class="bg-white p-4 flex flex-grow flex-col border-l-2 border-grey-500 border-r-2 border-grey-500">
+      <h2 class="text-xl font-bold mb-4 text-blue-700 ">Home</h2>
+      <div class="mb-4">
+        <form id="tweetForm" action="/app/api/tweets.php" method="POST" enctype="multipart/form-data">
+          <input type="text" id="tweetPost" name="tweetPost" class="w-full p-2 border-b border-gray-300"
+            placeholder="Quoi de neuf ?!">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
+              <label for="imageUpload" class="cursor-pointer text-3xl hover:text-blue-600">
+                <i class="far fa-image"></i>
+              </label>
+              <input type="file" id="imageUpload" name="media[]" accept="image/*" multiple class="hidden">
+              <div id="imagePreviewContainer" class="flex ml-2 flex-wrap"></div>
+            </div>
+            <button type="submit" id="PostButton"
+              class="bg-grey-500 text-white py-2 px-4 rounded-full mt-2">Poster</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Right Sidebar -->
+    <div
+      id="rightSidebar" class="bg-blue-50 p-4 w-1/4 sticky top-0 h-screen hidden mr-0 2xl:mr-60 xl:mr-10 md:block">
+      <div class="mb-4">
+        <form action="../api/search.php" method="post">
+          <input type="text" class="w-full py-2 px-4 border border-gray-300 rounded-full" placeholder="Chercher">
+        </form>
+      </div>
+      <div class="trending-box bg-white p-4 rounded-lg shadow-md">
+        <h3 class="text-xl font-bold mb-4">Tendances</h3>
+        <ul>
+          <li class="mb-4">
+            <a href="#" class="text-blue-600 hover:text-blue-800">
+              <span class="font-semibold">#Trend1</span>
+              <p class="text-gray-500 text-sm">12.3K Tweets</p>
+            </a>
+          </li>
+          <li class="mb-4">
+            <a href="#" class="text-blue-600 hover:text-blue-800">
+              <span class="font-semibold">#Trend2</span>
+              <p class="text-gray-500 text-sm">8.7K Tweets</p>
+            </a>
+          </li>
+          <li class="mb-4">
+            <a href="#" class="text-blue-600 hover:text-blue-800">
+              <span class="font-semibold">#Trend3</span>
+              <p class="text-gray-500 text-sm">5.4K Tweets</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="fixed bottom-0 right-0 w-full md:w-1/3">
+        <div id="messageBoxBackground" class="p-4 rounded-t-lg shadow-md bg-white">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-blue-700">Messages</h3>
+            <button class="text-blue-600 hover:text-blue-800">
+              <i class="fas fa-chevron-up"></i>
+            </button>
+          </div>
+          <div id="messageBox" class="hidden mt-4">
+            <div class="mb-4">
+              <input type="text" class="w-full py-2 px-4 border border-gray-300 rounded-full"
+                placeholder="Search messages">
+            </div>
+            <div class="message-list max-h-64 overflow-y-auto">
+              <div class="message-item mb-4 p-2 border-b border-gray-200">
+                <h4 class="text-lg font-semibold">User 1</h4>
+                <p class="text-gray-500 text-sm">Last message from User 1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript files -->
+  <script type="module" src="script/timeline.js"></script>
+  <script src="script/tweet-form-handler.js"></script>
+  <script src="script/message-box-handler.js"></script>
+  <script src="script/logout.js"></script>
+  <script src="script/darkmode.js"></script>
+  <script src="script/profile-picture.js"></script>
+</body>
+
+</html>

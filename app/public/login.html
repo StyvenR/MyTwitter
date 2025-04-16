@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <title>Twitter</title>
+</head>
+<body>
+<div class="bg-purple-50 flex items-center justify-center h-screen">     
+        <div class="w-1/2 text-white flex flex-col justify-center">
+            <form action="/app/api/login.php" method="POST" class="flex flex-col space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-400 mb-4">Se connecter</h2>
+                <input type="text" name="username" placeholder="Username" class="w-full p-3 rounded bg-gray-700 text-white mb-3">
+                <input type="password" name="password" placeholder="Password" class="w-full p-3 rounded bg-gray-700 text-white mb-3">
+                <button class="w-full bg-purple-600 py-2 px-4 rounded-full font-semibold">Connexion</button>
+                <p class="text-xs text-gray-400 mt-3">Mot de passe oublié ? <a href="#" class="text-purple-400">Cliquez ici</a></p>
+            </form>
+            
+            <div class="flex items-center my-4">
+                <hr class="flex-grow border-gray-600">
+                <span class="mx-4 text-gray-400">ou</span>
+                <hr class="flex-grow border-gray-600">
+            </div>
+            
+            <button onclick="window.location.href='register.html'" class="w-full bg-purple-500 text-white font-semibold py-2 px-4 rounded-full">Créer un compte</button>
+            <br>
+            <p class="text-xs text-gray-400 mt-2">
+                En vous inscrivant, vous acceptez les <a href="#" class="text-blue-400">Conditions d'utilisation</a> et la <a href="#" class="text-blue-400">Politique de confidentialité</a>, notamment l'utilisation des cookies.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
