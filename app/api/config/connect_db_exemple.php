@@ -3,8 +3,8 @@
 function my_connect()
 {
   $host = "localhost";
-  $username = "styven";
-  $password = "styven.raya2004";
+  $username = "username"; // Change this to your actual username
+  $password = "password"; // Change this to your actual password
   $db = "twitter";
 
   try {
